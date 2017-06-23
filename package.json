@@ -2,11 +2,19 @@
   "name": "webpack-dll",
   "version": "1.0.0",
   "scripts": {
-    "build-user": "webpack --config webpack.user.js",
-    "build-dll": "webpack --config webpack.dll.js",
-    "start": "node ./dist/user.bundle.js"
+    "build": "npm run build:dll && npm run build:user",
+    "build:user": "webpack --config config/webpack.user.js --display-optimization-bailout",
+    "build:dll": "webpack --config config/webpack.dll.js",
+    "start": "rimraf './dist' && npm run build && http-server ./dist"
   },
   "devDependencies": {
-    "webpack": "^2.6.1"
+    "html-webpack-include-assets-plugin": "0.0.5",
+    "html-webpack-plugin": "^2.28.0",
+    "http-server": "^0.10.0",
+    "rimraf": "^2.6.1"
+  },
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "webpack": "^3.0.0"
   }
 }

@@ -1,5 +1,7 @@
-const letters = require('./vendor/letters');
-const numbers = require('./vendor/numbers');
+import _ from 'lodash'
 
-console.log(letters);
-console.log(numbers);
+import letters from './letters'
+import numbers from './numbers'
+
+const content = _.map(letters, (letter) => letter + '!').join(' ')
+document.getElementById('root').innerHTML = `<h1>${content}</h1>`

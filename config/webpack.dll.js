@@ -4,19 +4,19 @@ const webpack = require('webpack')
 module.exports = {
   entry: {
     vendor: [
-      './src/vendor/letters',
-      './src/vendor/numbers'
+      'lodash'
     ]
   },
   output: {
     filename: 'vendor.bundle.js',
-    path: path.resolve(__dirname, 'dll'),
+    path: path.resolve(__dirname, '../dist/dll'),
     library: '[name]__[hash]'
   },
   plugins: [
+    // new webpack.optimize.ModuleConcatenationPlugin(),
     new webpack.DllPlugin({
       name: '[name]__[hash]',
-      path: 'dll/vendor.manifest.json'
+      path: path.resolve(__dirname, '../dist/dll/vendor.manifest.json')
     })
   ]
 }
